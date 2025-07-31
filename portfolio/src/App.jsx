@@ -1,27 +1,33 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { useState, useRef} from 'react'
+import NavBar from "./components/NavBar"
+import Hero from "./components/Hero"
+import Projects from "./components/Projects"
+import About from "./components/About"
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const heroRef = useRef(null);
+  const aboutRef = useRef(null);
+  const projectsRef = useRef(null);
+
+  const scrollTo = (ref) => {
+    ref.current?.scrollIntoView({ behavior: 'smooth' });
+  };
 
   return (
-    <div className="min-h-screen bg-gray-100 flex items-center justify-center">
-      <div className="bg-white p-8 rounded-lg shadow-lg">
-        <h1 className="text-3xl font-bold text-gray-800 mb-4">
-          Tailwind CSS is working! 🎉
-        </h1>
-        <p className="text-gray-600 mb-4">
-          If you can see this styled text, Tailwind is properly installed.
-        </p>
-        <button 
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </div>
+    <div>
+      <NavBar scrollTo={scrollTo} refs={{ heroRef, aboutRef, projectsRef }} />
+
+      <section className="pt-20 min-h-screen" ref={heroRef}>
+        <Hero onNext={() => scrollTo(aboutRef)} />
+      </section>
+      <section className="pt-20 min-h-screen" ref={aboutRef}>
+        <About onNext={() => scrollTo(projectsRef)} />
+      </section>
+      <section className="pt-20 min-h-screen" ref={projectsRef}>
+        <Projects onNext={() => scrollTo(contactRef)} />
+      </section>
+
     </div>
   )
 }
