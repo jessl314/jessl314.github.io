@@ -18,13 +18,13 @@ function App() {
     <div>
       <NavBar scrollTo={scrollTo} refs={{ heroRef, aboutRef, projectsRef }} />
 
-      <section className="pt-20 min-h-screen" ref={heroRef}>
+      <section className="bg-[#0e1712] pt-20 min-h-screen" ref={heroRef}>
         <Hero onNext={() => scrollTo(aboutRef)} />
       </section>
-      <section className="pt-20 min-h-screen" ref={aboutRef}>
+      <section className="bg-[#1a2a22] pt-20 min-h-screen" ref={aboutRef}>
         <About onNext={() => scrollTo(projectsRef)} />
       </section>
-      <section className="pt-20 min-h-screen" ref={projectsRef}>
+      <section className="bg-[#0e1712] pt-20 min-h-screen" ref={projectsRef}>
         <Projects onNext={() => scrollTo(contactRef)} />
       </section>
 
