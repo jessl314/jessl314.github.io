@@ -8,16 +8,6 @@ router.get('/', async (req, res) => {
     res.json(about);
 });
 
-router.post('/', async (req, res) => {
-    const existingAbout = await About.findOne();
-  if (existingAbout) {
-    return res.status(400).json({ message: 'About section already exists' });
-  }
-    const newAbout = new About({
-
-    })
-})
-
 // update about me -> PUT, create a string for attribute and then send it to my API using put like this {bio: "new bio"}
 router.put('/:id', async (req, res) => {
     const updatedAbout = await About.findByIdAndUpdate(req.params.id, req.body, { new: true});

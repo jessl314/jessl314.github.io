@@ -45,7 +45,17 @@ async function seed() {
         console.log('Contact document already exists')
     }
 
-    
 
+    const heroCount = await Hero.countDocuments();
+    if (heroCount === 0) {
+        const newHero = new Hero({
+            animated: String,
+            elevPitch: String,
+        })
+        await newHero.save();
+        console.log('Default Hero document seeded');
+    } else {
+        console.log('Hero document already exists')
+    }
 }
 
