@@ -30,3 +30,74 @@ connection.once('open', () => {
     console.log("database connection error: ", error);
 });
 
+// HERO ---------------------------
+const heroSchema = new mongoose.Schema( {
+    animated: String,
+    elevPitch: String
+})
+
+module.exports = mongoose.model('Hero', heroSchema);
+
+// PROJECTS----------
+const projectSchema = new mongoose.Schema({
+    title: String,
+    description: String,
+    techStack: [String],
+    githubLink: String,
+    liveDemoLink: String,
+    startDate: String,
+    endDate: String,
+    updatedAt: { type: Date, default: Date.now }
+})
+
+module.exports = mongoose.model('Projects', projectSchema);
+
+const experienceSchema = new mongoose.Schema({
+    role: String,
+    company: String,
+    location: String,
+    startDate: String,
+    endDate: String,
+    description: [String],
+    skills: [String],
+    type: {
+        type: String,
+        enum: ['Technical', 'Additional'],
+        default: 'Technical'
+    },
+    updatedAt: { type: Date, default: Date.now }
+});
+
+module.exports = mongoose.model('Experience', experienceSchema);
+
+//ABOUT ME --------------------------
+// education
+const educationSchema = new mongoose.Schema({
+    school: String,
+    degree: String,
+    minor: String,
+    startYear: Number,
+    endYear: String
+}, {_id: false}) // Prevents automatic _id generation for subdoc
+
+// about me bio + profile image
+const aboutSchema = new mongoose.Schema({
+    content: String,
+    profileImage: String,
+    Education: [educationSchema],
+    updatedAt: {type: Date, default: Date.now}
+});
+
+module.exports = mongoose.model('About', aboutSchema);
+
+// CONTACT --------------
+
+const contactSchema = new mongoose.Schema({
+    name: String,
+    email: String,
+    linkedin: String,
+    githubLink: String,
+    updatedAt: { type: Date, default: Date.now }
+})
+
+module.exports = mongoose.model('Contact', contactSchema);
