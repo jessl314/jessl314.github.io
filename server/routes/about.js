@@ -14,10 +14,4 @@ router.put('/:id', async (req, res) => {
     res.json(updatedAbout);
 });
 
-router.delete('/:id', async (req, res) => {
-    await About.findByIdAndDelete(req.params.id);
-    res.json({message: 'About deleted'})
-})
-
-
 

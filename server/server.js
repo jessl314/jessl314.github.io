@@ -15,17 +15,17 @@ app.use(express.urlencoded({ extended: true }))
 const uri = process.env.MONGO_URI;
 
 // Routes
-const aboutRoute = require('./routes/about')
-const projectRoute = require('./routes/projects')
-const contactRoute = require('./routes/contact')
-const experienceRoute = require('./routes/experience')
-const heroRoute = require('./routes/hero')
+const aboutRoutes = require('./routes/about')
+const projectRoutes = require('./routes/projects')
+const contactRoutes = require('./routes/contact')
+const experienceRoutes = require('./routes/experience')
+const heroRoutes = require('./routes/hero')
 
-app.use('/api/about', aboutRoute);
-app.use('/api/projects', projectRoute);
-app.use('/api/about', contactRoute);
-app.use('/api/projects', experienceRoute);
-app.use('/api/about', heroRoute);
+app.use('/api/about', aboutRoutes);
+app.use('/api/projects', projectRoutes);
+app.use('/api/about', contactRoutes);
+app.use('/api/projects', experienceRoutes);
+app.use('/api/about', heroRoutes);
 
 
 // mongodb connection + start server
