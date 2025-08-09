@@ -1,8 +1,8 @@
 import { useState, useRef} from 'react'
-import NavBar from "./components/NavBar"
-import Hero from "./components/Hero"
-import Projects from "./components/Projects"
-import About from "./components/About"
+import NavBar from "./pages/NavBar"
+import Hero from "./pages/Hero"
+import Projects from "./pages/Projects"
+import About from "./pages/About"
 import './App.css'
 
 function App() {
