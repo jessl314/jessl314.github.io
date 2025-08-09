@@ -5,7 +5,7 @@ const projectSchema = new mongoose.Schema({
     description: String,
     techStack: [String],
     githubLink: String,
-    liveDemoLink: String,
+    demoLink: String,
     startDate: String,
     endDate: String,
     updatedAt: { type: Date, default: Date.now }

@@ -21,6 +21,7 @@ const contactRoutes = require('./routes/contact')
 const experienceRoutes = require('./routes/experience')
 const heroRoutes = require('./routes/hero')
 
+// bridge inside Express backend that makes the routes in route files available as HTTP endpoints
 app.use('/api/about', aboutRoutes);
 app.use('/api/projects', projectRoutes);
 app.use('/api/about', contactRoutes);

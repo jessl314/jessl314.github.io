@@ -24,3 +24,16 @@ router.post('/', async (req, res) => {
     res.json(newExperience);
 })
 
+// PUT
+router.put('/:id', async (req, res) => {
+    const updatedExperience = await Experience.findByIdAndUpdate(req.params.id, req.body, { new : true});
+    res.json(updatedExperience);
+})
+
+// DELETE
+router.delete('/:id', async (req, res) => {
+    await Experience.findByIdAndDelete(req.params.id);
+    res.json({ message: "Experience deleted"});
+})
+
+module.exports = router;

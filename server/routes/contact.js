@@ -12,3 +12,5 @@ router.put('/:id', async (req, res) => {
     const updatedContact = await Contact.findByIdAndUpdate(req.params.id, req.body, { new: true});
     res.json(updatedContact);
 });
+
+module.exports = router;
