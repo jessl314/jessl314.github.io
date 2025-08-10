@@ -1,8 +1,10 @@
-const Projects = () => {
+import ProjectItem from "../components/projects/ProjectItem"
+
+const EditProject = () => {
 
 }
 
-export default Projects;
+export default EditProject;
 
 
 //  {editProject && (
@@ -15,3 +17,9 @@ export default Projects;
 //             onCancel={() => setEditProject(null)} // optional cancel button
 //         />
 //         )}
+
+// const [editProject, setEditProject] = useState(null)
+
+//     const handleRemove = () => {
+//         removeProject(project._id)
+//     }
