@@ -17,18 +17,16 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }))
 
 // connection uri to mongodb cluster/cloud
-const uri = process.env.MONGO_URI;
+const uri: string | undefined = process.env.MONGO_URI;
 
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
-  console.error(err.stack);
-
-  if (res.headersSent) {
-    return next(err);
-  }
-
-  res.status(err.status || 500).json({
-    message: err.message || "Internal Server Error"
-  });
+  if ('status' in err) {
+      // TypeScript now knows that 'err' has a 'status' property
+      res.status(err.status as number).send(err.message);
+    } else {
+      // Handle the generic error case
+      res.status(500).send('An unexpected error occurred.');
+    }
 });
 
 // bridge inside Express backend that makes the routes in route files available as HTTP endpoints
@@ -41,11 +39,16 @@ app.use('/api/about', heroRoutes);
 
 // mongodb connection + start server
 
-mongoose.connect(uri, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    serverSelectionTimeoutMS: 5000,
-}).catch(err => console.error(err));
+if (uri) {
+  mongoose.connect(uri).then(() => {
+    console.log('MongoDB connected successfully!');
+  }).catch(err => {
+    console.error('MongoDB connection error:', err);
+  });
+} else {
+  // Handle the case where the URI is missing
+  console.error('MONGO_URI environment variable is not defined!');
+}
 
 const connection = mongoose.connection;
 connection.once('open', () => {
