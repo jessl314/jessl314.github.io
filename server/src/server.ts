@@ -2,11 +2,11 @@ import express, { type Request, type Response, type NextFunction } from 'express
 import mongoose from 'mongoose';
 import cors from 'cors';
 import 'dotenv/config';
-import aboutRoutes from './routes/about.js';
-import projectRoutes from './routes/projects.js';
-import contactRoutes from './routes/contact.js';
-import experienceRoutes from './routes/experience.js';
-import heroRoutes from './routes/hero.js';
+import aboutRoutes from './routes/about';
+import projectRoutes from './routes/projects';
+import contactRoutes from './routes/contact';
+import experienceRoutes from './routes/experience';
+import heroRoutes from './routes/hero';
 
 const app = express()
 const PORT = process.env.PORT || 5000;
@@ -19,6 +19,19 @@ app.use(express.urlencoded({ extended: true }))
 // connection uri to mongodb cluster/cloud
 const uri: string | undefined = process.env.MONGO_URI;
 
+// Test route to verify server is working
+app.get('/', (req: Request, res: Response) => {
+  res.json({ message: 'Server is running!' });
+});
+
+// bridge inside Express backend that makes the routes in route files available as HTTP endpoints
+app.use('/api/about', aboutRoutes);
+app.use('/api/projects', projectRoutes);
+app.use('/api/contact', contactRoutes);
+app.use('/api/experience', experienceRoutes);
+app.use('/api/hero', heroRoutes);
+
+// Error handling middleware should come AFTER routes
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
   if ('status' in err) {
       // TypeScript now knows that 'err' has a 'status' property
@@ -28,13 +41,6 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
       res.status(500).send('An unexpected error occurred.');
     }
 });
-
-// bridge inside Express backend that makes the routes in route files available as HTTP endpoints
-app.use('/api/about', aboutRoutes);
-app.use('/api/projects', projectRoutes);
-app.use('/api/about', contactRoutes);
-app.use('/api/projects', experienceRoutes);
-app.use('/api/about', heroRoutes);
 
 
 // mongodb connection + start server

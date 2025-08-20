@@ -1,6 +1,6 @@
 import { Router, type Request, type Response } from 'express';
-import Hero from '../models/Hero.js';
-import { asyncHandler } from '../utils/asyncHandler.js';
+import Hero from '../models/Hero';
+import { asyncHandler } from '../utils/asyncHandler';
 
 const router: Router = Router();
 

@@ -6,7 +6,7 @@
   "scripts": {
     "build": "tsc",
     "start": "node dist/server.js",
-    "dev": "ts-node-dev src/server.ts",
+    "dev": "ts-node-dev --project tsconfig.dev.json src/server.ts",
     "devStart": "nodemon --exec ts-node src/server.ts",
     "seed": "ts-node src/seed.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -14,7 +14,7 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "module",
+
   "dependencies": {
     "bcryptjs": "^3.0.2",
     "cors": "^2.8.5",

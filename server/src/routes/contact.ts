@@ -1,6 +1,6 @@
 import { Router, type Request, type Response } from 'express';
-import Contact from '../models/Contact.js';
-import { asyncHandler } from '../utils/asyncHandler.js';
+import Contact from '../models/Contact';
+import { asyncHandler } from '../utils/asyncHandler';
 
 const router: Router = Router();
 

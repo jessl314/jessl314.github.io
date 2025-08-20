@@ -1,6 +1,6 @@
 import { Router, type Request, type Response } from 'express';
-import Experience from '../models/Experience.js';
-import { asyncHandler } from '../utils/asyncHandler.js';
+import Experience from '../models/Experience';
+import { asyncHandler } from '../utils/asyncHandler';
 
 const router: Router = Router();
 
