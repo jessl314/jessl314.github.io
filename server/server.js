@@ -21,6 +21,18 @@ const contactRoutes = require('./routes/contact')
 const experienceRoutes = require('./routes/experience')
 const heroRoutes = require('./routes/hero')
 
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+
+  if (res.headersSent) {
+    return next(err);
+  }
+
+  res.status(err.status || 500).json({
+    message: err.message || "Internal Server Error"
+  });
+});
+
 // bridge inside Express backend that makes the routes in route files available as HTTP endpoints
 app.use('/api/about', aboutRoutes);
 app.use('/api/projects', projectRoutes);

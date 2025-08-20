@@ -1,16 +1,17 @@
 const express = require('express');
 const router = express.Router();
 const Contact = require('../models/Contact');
+const { asyncHandler } = require('../utils/asyncHandler.js');
 
 
-router.get('/', async (req, res) => {
+router.get('/', asyncHandler(async (req, res) => {
     const contact = await Contact.find();
-    res.json(contact);
-});
+    res.status(200).json(contact);
+}));
 
-router.put('/:id', async (req, res) => {
+router.put('/:id', asyncHandler(async (req, res) => {
     const updatedContact = await Contact.findByIdAndUpdate(req.params.id, req.body, { new: true});
-    res.json(updatedContact);
-});
+    res.status(200).json(updatedContact);
+}));
 
 module.exports = router;
