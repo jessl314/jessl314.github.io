@@ -4,6 +4,7 @@ import { asyncHandler } from '../utils/asyncHandler.js';
 
 const router: Router = Router();
 
+
 // get all about me info -> GET
 router.get('/', asyncHandler(async (req: Request, res: Response) => {
     const about = await About.find();

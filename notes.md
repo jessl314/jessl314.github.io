@@ -1,0 +1,1 @@
+for server backend we can run: npm run devStart
