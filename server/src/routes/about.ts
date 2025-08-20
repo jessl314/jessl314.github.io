@@ -1,7 +1,7 @@
-const express = require('express');
-const router = express.Router();
-const About = require('../models/About');
-const { asyncHandler } = require('../utils/asyncHandler.js');
+import { Router } from 'express'
+const router: Router = Router();
+import About from '../models/About.js';
+import { asyncHandler } from '../utils/asyncHandler.js';
 
 // get all about me info -> GET
 router.get('/', asyncHandler(async (req, res) => {
@@ -16,6 +16,6 @@ router.put('/:id', asyncHandler(async (req, res) => {
 }));
 
 
-module.exports = router;
+export default router;
 
 

@@ -2,11 +2,11 @@ import express, { type Request, type Response, type NextFunction } from 'express
 import mongoose from 'mongoose';
 import cors from 'cors';
 import 'dotenv/config';
-import aboutRoutes from '../routes/about.ts';
-import projectRoutes from '../routes/projects.ts';
-import contactRoutes from '../routes/contact.ts';
-import experienceRoutes from '../routes/experience.ts';
-import heroRoutes from '../routes/hero.ts';
+import aboutRoutes from './routes/about.js';
+import projectRoutes from './routes/projects.js';
+import contactRoutes from './routes/contact.js';
+import experienceRoutes from './routes/experience.js';
+import heroRoutes from './routes/hero.js';
 
 const app = express()
 const PORT = process.env.PORT || 5000;

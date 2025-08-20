@@ -1,17 +1,17 @@
-const express = require('express');
-const router = express.Router();
-const Experience = require('../models/Experience');
-const { asyncHandler } = require('../utils/asyncHandler.js');
+import { Router, type Request, type Response } from 'express';
+import Experience from '../models/Experience.js';
+import { asyncHandler } from '../utils/asyncHandler.js';
 
+const router: Router = Router();
 
 // GET
-router.get('/', asyncHandler(async (req, res) => {
+router.get('/', asyncHandler(async (req: Request, res: Response) => {
     const experience = await Experience.find();
     res.status(200).json(experience);
 }));
 
 // POST
-router.post('/', asyncHandler(async (req, res) => {
+router.post('/', asyncHandler(async (req: Request, res: Response) => {
     const newExperience = new Experience({
         role: req.body.role,
         company: req.body.company,
@@ -27,15 +27,15 @@ router.post('/', asyncHandler(async (req, res) => {
 }));
 
 // PUT
-router.put('/:id', asyncHandler(async (req, res) => {
+router.put('/:id', asyncHandler(async (req: Request, res: Response) => {
     const updatedExperience = await Experience.findByIdAndUpdate(req.params.id, req.body, { new : true});
     res.status(200).json(updatedExperience);
 }));
 
 // DELETE
-router.delete('/:id', asyncHandler(async (req, res) => {
+router.delete('/:id', asyncHandler(async (req: Request, res: Response) => {
     await Experience.findByIdAndDelete(req.params.id);
     res.status(200).json({ message: "Experience deleted"});
 }));
 
-module.exports = router;
+export default router;

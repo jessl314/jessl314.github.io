@@ -1,17 +1,17 @@
-const express = require('express');
-const router = express.Router();
-const Contact = require('../models/Contact');
-const { asyncHandler } = require('../utils/asyncHandler.js');
+import { Router, type Request, type Response } from 'express';
+import Contact from '../models/Contact.js';
+import { asyncHandler } from '../utils/asyncHandler.js';
 
+const router: Router = Router();
 
-router.get('/', asyncHandler(async (req, res) => {
+router.get('/', asyncHandler(async (req: Request, res: Response) => {
     const contact = await Contact.find();
     res.status(200).json(contact);
 }));
 
-router.put('/:id', asyncHandler(async (req, res) => {
+router.put('/:id', asyncHandler(async (req: Request, res: Response) => {
     const updatedContact = await Contact.findByIdAndUpdate(req.params.id, req.body, { new: true});
     res.status(200).json(updatedContact);
 }));
 
-module.exports = router;
+export default router;
