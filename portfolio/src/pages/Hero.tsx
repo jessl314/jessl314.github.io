@@ -1,6 +1,11 @@
 import "./Hero.css"
 
-const Hero = () => {
+interface HeroProps {
+  onNext: () => void;
+}
+
+
+const Hero = ({ onNext }: HeroProps) => {
 
     return (
         

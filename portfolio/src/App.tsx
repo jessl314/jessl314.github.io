@@ -1,16 +1,18 @@
-import { useState, useRef} from 'react'
-import NavBar from "./pages/NavBar"
-import Hero from "./pages/Hero"
-import Projects from "./pages/Projects"
-import About from "./pages/About"
-import './App.css'
+import { useState, useRef } from 'react'
+import { type RefObject } from 'react';
+import NavBar from "./pages/NavBar.js"
+import Hero from "./pages/Hero.js"
+import Projects from "./pages/Projects.js"
+import About from "./pages/About.js"
+import '/App.css'
 
 function App() {
-  const heroRef = useRef(null);
-  const aboutRef = useRef(null);
-  const projectsRef = useRef(null);
+  const heroRef = useRef<HTMLDivElement>(null);
+  const aboutRef = useRef<HTMLDivElement>(null);
+  const projectsRef = useRef<HTMLDivElement>(null);
 
-  const scrollTo = (ref) => {
+ 
+  const scrollTo = (ref: RefObject<HTMLDivElement | null>) => {
     ref.current?.scrollIntoView({ behavior: 'smooth' });
   };
 
@@ -25,7 +27,7 @@ function App() {
         <About onNext={() => scrollTo(projectsRef)} />
       </section>
       <section className="bg-[#0e1712] pt-20 min-h-screen" ref={projectsRef}>
-        <Projects onNext={() => scrollTo(contactRef)} />
+        <Projects onNext={() => scrollTo(projectsRef)} />
       </section>
 
     </div>

@@ -1,4 +1,13 @@
-const Projects = () => {
+interface ProjectsProps {
+  onNext: () => void;
+}
+
+const Projects = ({ onNext }: ProjectsProps) => {
+    return (
+        <div>
+
+        </div>
+    );
 
 }
 
