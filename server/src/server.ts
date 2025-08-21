@@ -7,6 +7,7 @@ import projectRoutes from './routes/projects';
 import contactRoutes from './routes/contact';
 import experienceRoutes from './routes/experience';
 import heroRoutes from './routes/hero';
+import authRoutes from './routes/auth';
 
 const app = express()
 const PORT = process.env.PORT || 5000;
@@ -30,6 +31,7 @@ app.use('/api/projects', projectRoutes);
 app.use('/api/contact', contactRoutes);
 app.use('/api/experience', experienceRoutes);
 app.use('/api/hero', heroRoutes);
+app.use('/api/auth', authRoutes);
 
 // Error handling middleware should come AFTER routes
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {

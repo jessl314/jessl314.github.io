@@ -1,5 +1,6 @@
 import express, { Router, type Request, type Response } from 'express';
 import { asyncHandler } from '../utils/asyncHandler';
+import { authMiddleware } from '../middleware/authMiddleware'
 import User from '../models/User';
 import jwt from "jsonwebtoken";
 import bcrypt from 'bcryptjs';
@@ -72,4 +73,25 @@ router.post('/token', asyncHandler(async (req: Request, res: Response) => {
         return res.status(403).json({ message: 'Invalid or expired refresh token' });
     }
 }))
+
+// protected profile route
+router.get('/profile', authMiddleware, asyncHandler(async (req: Request, res: Response) => {
+  // authMiddleware has already run and attached the userId to the request object.
+  const userId = req.userId;
+
+  if (!userId) {
+    return res.status(401).json({ message: 'User ID not found' });
+  }
+
+  // Find the user by ID
+  const user = await User.findById(userId).select('-password'); // Exclude the password field
+
+  if (!user) {
+    return res.status(404).json({ message: 'User not found' });
+  }
+
+  // Send the user's public profile data (all fields except password)
+  res.status(200).json(user);
+}));
+
 export default router;

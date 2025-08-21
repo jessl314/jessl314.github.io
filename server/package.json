@@ -5,7 +5,7 @@
   "main": "dist/server.js",
   "scripts": {
     "build": "tsc",
-    "start": "node dist/server.js",
+    "start": "npm run build && node dist/server.js",
     "dev": "ts-node-dev --project tsconfig.dev.json src/server.ts",
     "devStart": "nodemon --exec ts-node src/server.ts",
     "seed": "ts-node src/seed.ts",
