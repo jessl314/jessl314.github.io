@@ -9,10 +9,7 @@ import Hero from './models/Hero.js';
 this function seeds the about me page, contact page, and hero page with default information so that I don't need a separate POST route for one-time information creation. After this, the information will only need to be updated via PUT
 */
 async function seed(): Promise<void> {
-    await mongoose.connect(process.env.MONGO_URI!, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true
-    });
+    await mongoose.connect(process.env.MONGO_URI!);
     
     // if there is no information in the About table create the default About object/row
     const aboutCount = await About.countDocuments();

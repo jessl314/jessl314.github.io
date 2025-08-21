@@ -50,6 +50,9 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
 if (uri) {
   mongoose.connect(uri).then(() => {
     console.log('MongoDB connected successfully!');
+    app.listen(PORT, () => {
+      console.log(`Server is running on port ${PORT}`);
+    });
   }).catch(err => {
     console.error('MongoDB connection error:', err);
   });
@@ -64,9 +67,6 @@ connection.once('open', () => {
 }).on('error', (error) => {
     console.log("database connection error: ", error);
 });
-
-
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`))
 
 
 
