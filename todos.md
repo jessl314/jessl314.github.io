@@ -5,8 +5,7 @@ https://www.youtube.com/watch?v=mbsmsi7l3r4
 
 TODO: implement JWT + add a UI in the server backend for login and basic structure such as side navbar for other pages
 
-- write the register route from gemini
-- then go back to following the tutorial
+- check what else I need to do and start making the UI
 
 NEXT STEPS:
 
