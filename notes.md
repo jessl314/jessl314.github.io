@@ -6,3 +6,7 @@ to fix import errors
 remove "type": "module" -> use "module": "commonjs" and "moduleResolution":"node" -> make ts/js imports extensionless
 
 also removed: verbatimModuleSyntax: true and allowImportingTsExtensions: true
+
+
+
+require('crypto').randomBytes(64).toString('hex') -> command for generating secrets lol
