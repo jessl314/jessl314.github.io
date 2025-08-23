@@ -10,3 +10,6 @@ also removed: verbatimModuleSyntax: true and allowImportingTsExtensions: true
 
 
 require('crypto').randomBytes(64).toString('hex') -> command for generating secrets lol
+
+
+backend endpoint: https://jesslpersonalwebsite.onrender.com
