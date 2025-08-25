@@ -1,9 +1,7 @@
 import { useState, type FormEvent} from 'react'
 import { useAuth } from "./AuthHandler.js"
 
-interface LoginResponse {
-    token: string;
-}
+
 
 
 const LoginForm = () => {
@@ -28,8 +26,8 @@ const LoginForm = () => {
                 throw new Error("Login Failed")
             }
 
-            const data: LoginResponse = await res.json();
-            login(data.token);
+            const data = await res.json();
+            login(data.token, data.user);
             setSuccess("Login successful")
             console.log(success)
         } catch (err: any) {

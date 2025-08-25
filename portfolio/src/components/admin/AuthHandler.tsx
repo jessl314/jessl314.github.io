@@ -1,10 +1,15 @@
 import { useState, useEffect, useContext, createContext, type ReactNode } from 'react';
 
+interface User {
+    id: string;
+    username: string;
+}
 interface AuthContextType {
     isAuth: boolean;
     isLoad: boolean;
-    login: (token: string) => void;
+    login: (token: string, user?: User) => void;
     logout: (token: string) => void;
+    register: (username: string, password: string) => Promise<void>;
 }
 
 // creates context for when authentication state is tracked
@@ -23,6 +28,7 @@ interface AuthProviderProps {
 export const AuthProvider = ({ children }: AuthProviderProps) => {
     const [isAuth, setIsAuth] = useState(false);
     const [isLoad, setIsLoad] = useState(true);
+    const [user, setUser] = useState<User | null>(null);
 
     // check for token on initial load
     useEffect(() => {
@@ -37,21 +43,40 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     // or removing it
     // stores token while a user is logged in
 
-    const login = (token: string) => {
+    const login = (token: string, user?: User) => {
         localStorage.getItem('token');
         setIsAuth(true);
+        if (user) setUser(user);
     }
 
     const logout = (token: string) => {
         localStorage.removeItem('token');
         setIsAuth(false);
+        setUser(null);
     }
+
+    const register = async (username: string, password: string) => {
+    const res = await fetch("https://jesslpersonalwebsite.onrender.com/api/auth/register", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ username, password }),
+    });
+
+    if (!res.ok) {
+      throw new Error("Registration failed");
+    }
+
+    const data = await res.json();
+    // Assuming API returns { token, user }
+    login(data.token, data.user);
+    };
 
     const value: AuthContextType = {
         isAuth,
         isLoad,
         login,
         logout,
+        register,
     };
 
     return (
