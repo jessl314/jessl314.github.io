@@ -27,39 +27,6 @@ my credentials lol
 
 next steps:
 
-1. make dashboard component
-2. add this to pages admin.tsx
-
-import { AuthProvider } from '../components/admin/AuthHandler';
-import AdminDashboard from '../components/admin/AdminDashboard';
-import LoginForm from '../components/admin/LoginForm';
-import { useAuth } from '../components/admin/AuthHandler';
-
-const AdminContent = () => {
-  const { isAuth, isLoad } = useAuth();
-  
-  if (isLoad) return <div>Loading...</div>;
-  if (!isAuth) return <LoginForm />;
-  return <AdminDashboard />;
-};
-
-const AdminPage = () => {
-  return (
-    <AuthProvider>
-      <AdminContent />
-    </AuthProvider>
-  );
-};
-
-export default AdminPage;
-
-3. add react router and other pages
-<!-- 
-<Router>
-  <AdminNavbar />
-  <Routes>
-    <Route path="/admin/posts" element={<PostsManager />} />
-    <Route path="/admin/projects" element={<ProjectsManager />} />
-    <Route path="/admin/settings" element={<Settings />} />
-  </Routes>
-</Router> -->
+1. figure out how to get bare bones dashboard out and like a login button on the portfolio website
+2. use cursor to check for errors
+3. begin the UI for navbar and start the other pages for admin portal
