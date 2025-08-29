@@ -8,7 +8,7 @@ interface AuthContextType {
     isAuth: boolean;
     isLoad: boolean;
     login: (token: string, user?: User) => void;
-    logout: (token: string) => void;
+    logout: () => void;
     register: (username: string, password: string) => Promise<void>;
 }
 
@@ -32,7 +32,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
     // check for token on initial load
     useEffect(() => {
-        const token = localStorage.getIten('token');
+        const token = localStorage.getItem('token');
         if (token) {
             setIsAuth(true);
         }
@@ -44,12 +44,12 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     // stores token while a user is logged in
 
     const login = (token: string, user?: User) => {
-        localStorage.getItem('token');
+        localStorage.setItem('token', token);
         setIsAuth(true);
         if (user) setUser(user);
     }
 
-    const logout = (token: string) => {
+    const logout = () => {
         localStorage.removeItem('token');
         setIsAuth(false);
         setUser(null);
@@ -67,8 +67,8 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     }
 
     const data = await res.json();
-    // Assuming API returns { token, user }
-    login(data.token, data.user);
+    // API returns { token }
+    login(data.token);
     };
 
     const value: AuthContextType = {

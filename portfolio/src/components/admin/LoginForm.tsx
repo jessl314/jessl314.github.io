@@ -27,7 +27,7 @@ const LoginForm = () => {
             }
 
             const data = await res.json();
-            login(data.token, data.user);
+            login(data.token);
             setSuccess("Login successful")
             console.log(success)
         } catch (err: any) {
