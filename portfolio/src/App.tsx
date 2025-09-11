@@ -6,6 +6,7 @@ import NavBar from "./pages/NavBar.js"
 import Hero from "./pages/Hero.js"
 import Projects from "./pages/Projects.js"
 import About from "./pages/About.js"
+import Footer from "./components/Footer.js"
 import AdminPage from "./pages/admin/Admin.js"
 import './App.css'
 
@@ -31,6 +32,8 @@ function PortfolioContent() {
       <section className="bg-[#0e1712] pt-20 min-h-screen" ref={projectsRef}>
         <Projects onNext={() => scrollTo(projectsRef)} />
       </section>
+      
+      <Footer />
     </div>
   )
 }
