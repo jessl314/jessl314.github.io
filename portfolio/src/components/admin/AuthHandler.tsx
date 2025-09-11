@@ -7,6 +7,7 @@ interface User {
 interface AuthContextType {
     isAuth: boolean;
     isLoad: boolean;
+    isLoggingOut: boolean; // Add this
     login: (token: string, user?: User) => void;
     logout: () => void;
     register: (username: string, password: string) => Promise<void>;
@@ -28,6 +29,7 @@ interface AuthProviderProps {
 export const AuthProvider = ({ children }: AuthProviderProps) => {
     const [isAuth, setIsAuth] = useState(false);
     const [isLoad, setIsLoad] = useState(true);
+    const [isLoggingOut, setIsLoggingOut] = useState(false); // Add this
     const [user, setUser] = useState<User | null>(null);
 
     // check for token on initial load
@@ -39,10 +41,6 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         setIsLoad(false);
     }, []);
 
-    // login/logout, setting token into local storage
-    // or removing it
-    // stores token while a user is logged in
-
     const login = (token: string, user?: User) => {
         localStorage.setItem('token', token);
         setIsAuth(true);
@@ -50,9 +48,12 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     }
 
     const logout = () => {
+        setIsLoggingOut(true); // Set logging out state
         localStorage.removeItem('token');
         setIsAuth(false);
         setUser(null);
+        // Force redirect to portfolio
+        window.location.href = '/';
     }
 
     const register = async (username: string, password: string) => {
@@ -74,6 +75,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     const value: AuthContextType = {
         isAuth,
         isLoad,
+        isLoggingOut, // Add this
         login,
         logout,
         register,

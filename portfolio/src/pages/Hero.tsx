@@ -2,13 +2,13 @@ import "./Hero.css"
 
 interface HeroProps {
   onNext: () => void;
-  animated: string;
-  elevPitch: string;
+  animated?: string;
+  elevPitch?: string;
 }
 // do something similar for all frontend pages 
 // if optional do something like: demoLink?: string;
 // and below do demolink = "Not Available"
-const Hero = ({ onNext, animated, elevPitch}: HeroProps) => {
+const Hero = (props: HeroProps) => {
 
     return (
         

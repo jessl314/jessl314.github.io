@@ -13,15 +13,12 @@ const AdminNavbar = () => {
             <Link to="/dashboard">Dashboard</Link>
             <button onClick={handleLogout}>Logout</button>
             <hr />
-                <a
-                    href=" https://jessl314.github.io/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    View Portfolio
-                </a>
+            <Link to="/">
+                View Portfolio
+            </Link>
         </div>
     );
 };
 
 export default AdminNavbar;
+

@@ -1,22 +1,18 @@
-import { AuthProvider } from '../../components/admin/AuthHandler.js';
 import AdminDashboard from './Dashboard.js';
 import LoginForm from '../../components/admin/LoginForm.js';
 import { useAuth } from '../../components/admin/AuthHandler.js';
 
 const AdminContent = () => {
-  const { isAuth, isLoad } = useAuth();
+  const { isAuth, isLoad, isLoggingOut } = useAuth();
   
   if (isLoad) return <div>Loading...</div>;
+  if (isLoggingOut) return <div>Logging out...</div>;
   if (!isAuth) return <LoginForm />;
   return <AdminDashboard />;
 };
 
 const AdminPage = () => {
-  return (
-    <AuthProvider>
-      <AdminDashboard />
-    </AuthProvider>
-  );
+  return <AdminContent />;
 };
 
 export default AdminPage;

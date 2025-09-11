@@ -1,17 +1,19 @@
 import { useState, useRef } from 'react'
 import { type RefObject } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { AuthProvider } from './components/admin/AuthHandler.js';
 import NavBar from "./pages/NavBar.js"
 import Hero from "./pages/Hero.js"
 import Projects from "./pages/Projects.js"
 import About from "./pages/About.js"
-import '/App.css'
+import AdminPage from "./pages/admin/Admin.js"
+import './App.css'
 
-function App() {
+function PortfolioContent() {
   const heroRef = useRef<HTMLDivElement>(null);
   const aboutRef = useRef<HTMLDivElement>(null);
   const projectsRef = useRef<HTMLDivElement>(null);
 
- 
   const scrollTo = (ref: RefObject<HTMLDivElement | null>) => {
     ref.current?.scrollIntoView({ behavior: 'smooth' });
   };
@@ -29,9 +31,21 @@ function App() {
       <section className="bg-[#0e1712] pt-20 min-h-screen" ref={projectsRef}>
         <Projects onNext={() => scrollTo(projectsRef)} />
       </section>
-
     </div>
   )
 }
 
-export default App
+function App() {
+  return (
+    <AuthProvider>
+      <Router>
+        <Routes>
+          <Route path="/" element={<PortfolioContent />} />
+          <Route path="/admin" element={<AdminPage />} />
+        </Routes>
+      </Router>
+    </AuthProvider>
+  )
+}
+
+export default App;
