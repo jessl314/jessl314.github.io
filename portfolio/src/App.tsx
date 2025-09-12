@@ -44,7 +44,7 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<PortfolioContent />} />
-          <Route path="/admin" element={<AdminPage />} />
+          <Route path="/admin/*" element={<AdminPage />} />
         </Routes>
       </Router>
     </AuthProvider>

@@ -41,6 +41,10 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         setIsLoad(false);
     }, []);
 
+    // login/logout, setting token into local storage
+    // or removing it
+    // stores token while a user is logged in
+
     const login = (token: string, user?: User) => {
         localStorage.setItem('token', token);
         setIsAuth(true);
@@ -75,7 +79,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     const value: AuthContextType = {
         isAuth,
         isLoad,
-        isLoggingOut, // Add this
+        isLoggingOut,
         login,
         logout,
         register,

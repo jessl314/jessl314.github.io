@@ -2,20 +2,30 @@ import { Routes, Route} from "react-router-dom";
 import DashboardHome from "../../components/admin/DashboardHome.js";
 import AdminNavbar from "../../components/admin/AdminNavbar.js";
 import ProtectedRoute from "../../components/admin/ProtectRoute.js";
-
-
+import HeroAdmin from "./HeroAdmin.js";
+import AboutAdmin from "./AboutAdmin.js";
 
 const Dashboard = () => {
     return (
-        <div className="dashboard-layout">
+        <div className="min-h-screen bg-gray-50">
             <AdminNavbar/>
-            <div className="dashboard-content">
+            <div className="ml-72 p-8">
                 <Routes>
-                    <Route path="/dashboard/*" element={
+                    <Route path="/" element={
                         <ProtectedRoute>
-                              <DashboardHome/>
+                            <DashboardHome/>
                         </ProtectedRoute>
-                        } />   
+                    } />
+                    <Route path="/hero" element={
+                        <ProtectedRoute>
+                            <HeroAdmin/>
+                        </ProtectedRoute>
+                    } />
+                    <Route path="/about" element={
+                        <ProtectedRoute>
+                            <AboutAdmin/>
+                        </ProtectedRoute>
+                    } />
                 </Routes>
             </div>
         </div>
