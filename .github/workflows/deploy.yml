@@ -50,7 +50,7 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           # Standard Vite builds compile into the 'dist' folder
-          path: './frontend/dist'
+          path: './frontend/.output/public'
 
       - name: Deploy to GitHub Pages
         id: deployment
